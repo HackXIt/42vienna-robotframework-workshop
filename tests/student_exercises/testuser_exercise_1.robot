@@ -2,18 +2,15 @@
 Resource    ../../resources/common.resource
 Resource    ../../resources/login_page.resource
 
-Suite Setup    Open Browser To SauceDemo
-Suite Teardown    Close Browser
+Suite Setup       Open SauceDemo
+Suite Teardown    Close SauceDemo
 
 *** Test Cases ***
 Login With Standard User
-    Enter Username    standard_user
-    Enter Password    secret_sauce
-    Click Login Button
+    Login With Credentials    standard_user    secret_sauce
     Get Url    ==    https://www.saucedemo.com/inventory.html
+    Go To    ${BASE_URL}
 
 Login With Locked Out User
-    Enter Username    locked_out_user
-    Enter Password    secret_sauce
-    Click Login Button
+    Login With Credentials    locked_out_user    secret_sauce
     Get Text    css=.error-message-container    *=    locked out
